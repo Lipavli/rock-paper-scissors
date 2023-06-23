@@ -1,0 +1,406 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --index: calc(1vw+1vh);
+  --dark-text: hsl(229, 25%, 31%);
+  --score-text: hsl(229, 64%, 46%);
+  --header-outline: hsl(217, 16%, 45%);
+  --white-text: white;
+  --bg-1: hsl(214, 47%, 23%);
+  --bg-2: hsl(237, 49%, 15%);
+  --scissors-1: hsl(39, 89%, 49%);
+  --scissors-2: hsl(40, 84%, 53%);
+  --paper-1: hsl(230, 89%, 62%);
+  --paper-2: hsl(230, 89%, 65%);
+  --rock-1: hsl(349, 71%, 52%);
+  --rock-2: hsl(349, 70%, 56%);
+  --border-radius: 10px;
+  --shadow-inside: #00000026;
+  --shadow-outside: #0000004d;
+}
+
+body {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  background: repeating-radial-gradient(at top, var(--bg-1), var(--bg-2));
+  min-height: 100vh;
+  position: relative;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+/* header styling */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  gap: 5rem;
+  align-items: center;
+  max-width: 50%;
+  margin: 50px auto;
+  border: 2px solid var(--header-outline);
+  border-radius: var(--border-radius);
+  padding: 20px 30px;
+}
+
+/* score board */
+
+.score-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--white-text);
+  border-radius: var(--border-radius);
+  width: 130px;
+  height: 100px;
+}
+
+.score-title {
+  color: var(--score-text);
+  letter-spacing: 1.5px;
+}
+
+#scored-points {
+  font-size: 3rem;
+  color: var(--dark-text);
+  font-weight: 700;
+}
+
+/* game board */
+
+.game-board {
+  display: flex;
+  max-width: 50%;
+  height: 550px;
+  margin: auto;
+  position: relative;
+  padding: 10px;
+  /* display: none; */
+}
+
+/* buttons */
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  position: relative;
+  background-image: url(/images/bg-triangle.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.buttons > button {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background-color: var(--white-text);
+  cursor: pointer;
+}
+
+.buttons > button:hover {
+  transform: scale(1.1);
+}
+
+button img {
+  width: 80px;
+  height: 80px;
+}
+/* specific settings for buttons */
+#paper {
+  border: 30px solid var(--paper-1);
+  box-shadow: 0 0.5rem var(--shadow-outside), 0 0.5rem var(--paper-2);
+}
+
+#scissors {
+  border: 30px solid var(--scissors-1);
+  box-shadow: 0 0.5rem var(--shadow-outside), 0 0.5rem var(--scissors-2);
+}
+
+#rock {
+  border: 30px solid var(--rock-1);
+  box-shadow: 0 0.5rem var(--shadow-outside), 0 0.5rem var(--rock-2);
+}
+
+/* fight board */
+.fight-board {
+  display: none;
+  max-width: 50%;
+  height: 550px;
+  margin: auto;
+  position: relative;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.fight-board h2 {
+  color: var(--white-text);
+  padding-bottom: 60px;
+  width: 250px;
+  text-align: center;
+}
+
+.user-choice,
+.computer-choice {
+  max-width: 100%;
+}
+
+.user-choice img,
+.computer-choice img {
+  display: block;
+  margin: auto;
+}
+
+/* game end */
+.game-end {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 80%;
+  gap: 2rem;
+  max-width: 30%;
+}
+
+#result {
+  color: var(--white-text);
+  font-size: 2.8rem;
+  font-weight: 700;
+  width: 200px;
+  text-align: center;
+}
+
+#new-game {
+  border-radius: var(--border-radius);
+  background-color: var(--white-text);
+  width: 180px;
+  padding: 10px;
+  text-align: center;
+  color: var(--dark-text);
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+}
+
+#new-game:hover {
+  cursor: pointer;
+  color: rgba(225, 87, 66, 0.755);
+}
+
+/* rules button and display */
+#rules {
+  color: var(--white-text);
+  letter-spacing: 4px;
+  border: 3px solid var(--header-outline);
+  width: 150px;
+  text-align: center;
+  padding: 12px;
+  border-radius: var(--border-radius);
+  position: absolute;
+  bottom: 5%;
+  cursor: pointer;
+  margin-bottom: 5%;
+}
+
+.rules-display {
+  display: none;
+  position: absolute;
+  z-index: 4;
+  max-width: 400px;
+  padding: 20px 50px;
+  height: 400px;
+  background-color: var(--white-text);
+  border-radius: var(--border-radius);
+  left: 0;
+  right: 0;
+  bottom: 38%;
+  margin: 0 auto;
+}
+
+.rules-top {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 30px;
+}
+
+.rules-top h2 {
+  color: var(--dark-text);
+}
+
+.rules-top img {
+  cursor: pointer;
+}
+
+.rules-top img:hover {
+  transform: scale(1.2);
+}
+.rules-display img {
+  display: block;
+  margin-left: auto;
+}
+
+/* footer */
+
+footer {
+  max-width: 95%;
+  display: flex;
+  justify-content: end;
+}
+
+/* media queries */
+
+@media screen and (min-width: 1616px) {
+  .game-board {
+    max-width: 35%;
+  }
+}
+@media screen and (min-width: 2305px) {
+  .game-board {
+    max-width: 25%;
+  }
+}
+@media screen and (max-width: 1048px) {
+  .game-board {
+    max-width: 70%;
+  }
+  header {
+    max-width: 70%;
+  }
+
+  .fight-board {
+    justify-content: space-around;
+  }
+  #rules {
+    bottom: 0;
+  }
+}
+
+@media screen and (max-width: 766px) {
+  .game-board {
+    max-width: 100%;
+  }
+  header {
+    max-width: 90%;
+  }
+}
+@media screen and (max-width: 694px) {
+  footer {
+    max-width: 100%;
+    justify-content: center;
+  }
+
+  header img {
+    width: 40%;
+  }
+  .buttons {
+    gap: 3.5rem;
+  }
+  .buttons > button {
+    width: 190px;
+    height: 190px;
+  }
+  #paper {
+    border: 15px solid var(--paper-1);
+    box-shadow: 0 0.5rem var(--shadow-outside), 0 0.5rem var(--paper-2);
+  }
+
+  #scissors {
+    border: 15px solid var(--scissors-1);
+    box-shadow: 0 0.5rem var(--shadow-outside), 0 0.5rem var(--scissors-2);
+  }
+
+  #rock {
+    border: 15px solid var(--rock-1);
+    box-shadow: 0 0.5rem var(--shadow-outside), 0 0.5rem var(--rock-2);
+  }
+
+  .fight-board img {
+    width: 60%;
+  }
+
+  .fight-board h2 {
+    font-size: 1.4rem;
+  }
+  .game-end {
+    margin-top: -70px;
+    justify-content: end;
+  }
+  .user-choice {
+    position: absolute;
+    right: 45%;
+  }
+
+  .computer-choice {
+    position: absolute;
+    left: 45%;
+  }
+}
+@media screen and (max-width: 455px) {
+  header {
+    margin: 10px auto;
+  }
+  .buttons {
+    gap: 1.5rem;
+    background-size: 250px;
+  }
+
+  .rules-display {
+    max-width: 300px;
+    max-height: 300px;
+  }
+
+  #rulesImg {
+    width: 100%;
+  }
+  .buttons > button {
+    width: 130px;
+    height: 130px;
+  }
+  button img {
+    width: 50px;
+    height: 50px;
+  }
+  #paper {
+    border: 10px solid var(--paper-1);
+    box-shadow: 0 0.5rem var(--shadow-outside), 0 0.5rem var(--paper-2);
+  }
+
+  #scissors {
+    border: 10px solid var(--scissors-1);
+    box-shadow: 0 0.5rem var(--shadow-outside), 0 0.5rem var(--scissors-2);
+  }
+
+  #rock {
+    margin-top: -200px;
+    border: 10px solid var(--rock-1);
+    box-shadow: 0 0.5rem var(--shadow-outside), 0 0.5rem var(--rock-2);
+  }
+
+  .game-board{
+    margin-top: -80px;
+  }
+  .user-choice {
+    position: absolute;
+    right: 35%;
+  }
+
+  .computer-choice {
+    position: absolute;
+    left: 35%;
+  }
+  .fight-board h2 {
+    font-size: 1rem;
+    margin-left: -15px;
+  }
+  .fight-board img {
+    width: 50%;
+  }
+}

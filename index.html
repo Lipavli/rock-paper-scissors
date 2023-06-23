@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Frontend Mentor | Rock, Paper, Scissors</title>
+  </head>
+  <body>
+    <header>
+      <img src="/images/logo.svg" alt="game logo" />
+      <div class="score-display">
+        <span class="score-title">SCORE</span>
+        <span id="scored-points">0</span>
+      </div>
+    </header>
+
+    <section class="game-board">
+      <div class="rules-display">
+        <div class="rules-top">
+          <h2>RULES</h2>
+          <img src="/images/icon-close.svg" id="closeBtn" />
+        </div>
+        <img src="/images/image-rules.svg" id="rulesImg"/>
+      </div>
+      <div class="buttons">
+        <button id="paper" onclick="generateUserChoice('paper')">
+          <img src="/images/icon-paper.svg" alt="this is a paper" />
+        </button>
+        <button id="scissors" onclick="generateUserChoice('scissors')">
+          <img src="/images/icon-scissors.svg" alt="this is a scissors"  />
+        </button>
+        <button id="rock" onclick="generateUserChoice('rock')">
+          <img src="/images/icon-rock.svg" alt="this is a rock"   />
+        </button>
+      </div>
+    </section>
+
+    <section class="fight-board">
+      <div class="user-choice">
+        <h2>YOU PICKED</h2>
+        <img id="picked-by-user" src="/images/Rock.png" ></img>
+      </div>
+      <div class="game-end">
+        <span id="result"></span>
+        <span id="new-game">PLAY AGAIN</span>
+      </div>
+      <div class="computer-choice">
+        <h2>THE HOUSE PICKED</h2>
+        <img id="picked-by-computer" src="/images/Paper.png" ></img>
+      </div>
+     
+      
+    </section>
+
+    <footer>
+      <span id="rules">RULES</span>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
